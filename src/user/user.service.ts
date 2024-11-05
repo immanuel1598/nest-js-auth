@@ -11,8 +11,8 @@ export class UserService {
     @InjectRepository(User) private readonly userRepo: Repository<User>,
   ) {}
   async create(createUserDto: CreateUserDto) {
-    const user = await this.userRepo.create(createUserDto);
-    return this.userRepo.save(user);
+    const user = this.userRepo.create(createUserDto);
+    return await this.userRepo.save(user);
   }
 
   async findAll() {
@@ -24,6 +24,7 @@ export class UserService {
       where: {
         id,
       },
+      select: ['id', 'username', 'email', 'hashedRefreshToken', 'role'],
     });
   }
 

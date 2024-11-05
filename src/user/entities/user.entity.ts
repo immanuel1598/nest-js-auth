@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Role } from 'src/auth/enums/role.enum';
 @Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
@@ -21,6 +22,13 @@ export class User {
 
   @Column()
   password: string;
+
+@Column({
+  type:"enum",
+  enum: Role,
+  default:Role.TENANT
+})
+role: Role
 
   @Column({ nullable: true })
   hashedRefreshToken: string;

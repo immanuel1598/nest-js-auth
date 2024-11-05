@@ -7,3 +7,4 @@ export default registerAs("jwt" ,(): JwtModuleOptions => ({
     expiresIn: process.env.JWT_EXPIRE_IN,
   },
 }));
+ 
